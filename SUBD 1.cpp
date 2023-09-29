@@ -2,10 +2,29 @@
 #include <random>
 
 using namespace std;
-
+/*
+* @brief Функция обрабатывает ввод размера массива 
+*/
 size_t sizeValidation();
-void fillArray(int* arr, const size_t size, const int minimumNum, const int maximumNum);
+/*
+* @brief Функция заполнения массива случайными числами 
+* @param arr массив
+* @param size размер массива 
+* @param minimumNum минимальное число в массиве 
+* @param maximumNum максимальное число в массиве 
+*/
+void fillArr(int* arr, const size_t size, const int minimumNum, const int maximumNum);
+/*
+* @brief Функция вывода массива
+* @param arr массив
+* @param size размер массива
+*/
 void printArray(int* arr, const size_t size);
+/*
+* @brief Функция нахождения минимального значения в массиве 
+* @param arr массив
+* @param size размер массива
+*/
 int findMin(int* arr, const size_t size);
 
 int main() {
@@ -26,18 +45,17 @@ int main() {
     cout << "Enter maximum number:";
     int maximumNum;
     cin >> maximumNum;
-    fillArray(arr, size, minimumNum, maximumNum);
+    fillArr(arr, size, minimumNum, maximumNum);
     printArray(arr, size);
-    
-    // нахождение наименьшего числа в массиве
+
     int min = findMin(arr, size);
 
     cout << "Minimum of aray: " << min << endl;
 
-    if (arr!= nullptr)
+    if (arr != nullptr)
     {
-        delete[] arr;  // освобождение памяти, выделенной для массива
-            arr = nullptr;
+        delete[] arr;  
+        arr = nullptr;
     }
     return 0;
 }
@@ -55,21 +73,21 @@ int findMin(int* arr, const size_t size) {
 size_t sizeValidation()
 {
     int size;
-        cout << "Enter size of array: ";
-        cin >> size;
-        if (size <= 0) {
-            throw out_of_range("Error,enter correct size");
-        }
+    cout << "Enter size of array: ";
+    cin >> size;
+    if (size <= 0) {
+        throw out_of_range("Error,enter correct size");
+    }
 
     return size;
 }
 
-void fillArray(int* arr, const size_t size, const int minimumNum, const int maximumNum)
-{ // заполнение массива случайными числами
+void fillArr(int* arr, const size_t size, const int minimumNum, const int maximumNum)
+{ 
     random_device rd;
     mt19937 gen(rd());
-
-    const uniform_int_distribution<int> uniformIntDistribution(minimumNum, maximumNum);
+    
+    uniform_int_distribution<int> uniformIntDistribution(minimumNum, maximumNum);
 
     for (size_t i = 0; i < size; i++) {
         arr[i] = uniformIntDistribution(gen);
@@ -77,7 +95,7 @@ void fillArray(int* arr, const size_t size, const int minimumNum, const int maxi
 }
 
 void printArray(int* arr, const size_t size)
-{// вывод массива
+{
     cout << "Your array: ";
     for (size_t i = 0; i < size; i++) {
         cout << arr[i] << " ";
