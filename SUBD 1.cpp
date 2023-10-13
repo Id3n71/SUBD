@@ -2,11 +2,11 @@
 #include <random>
 
 using namespace std;
-/*
+/**
 * @brief Функция обрабатывает ввод размера массива 
 */
 size_t sizeValidation();
-/*
+/**
 * @brief Функция заполнения массива случайными числами 
 * @param arr массив
 * @param size размер массива 
@@ -14,13 +14,13 @@ size_t sizeValidation();
 * @param maximumNum максимальное число в массиве 
 */
 void fillArr(int* arr, const size_t size, const int minimumNum, const int maximumNum);
-/*
+/**
 * @brief Функция вывода массива
 * @param arr массив
 * @param size размер массива
 */
 void printArray(int* arr, const size_t size);
-/*
+/**
 * @brief Функция нахождения минимального значения в массиве 
 * @param arr массив
 * @param size размер массива
@@ -28,9 +28,8 @@ void printArray(int* arr, const size_t size);
 int findMin(int* arr, const size_t size);
 
 int main() {
-    size_t size;
     try {
-        size = sizeValidation();
+        size_t size = sizeValidation();
     }
     catch (out_of_range& e) {
         cerr << e.what();
@@ -79,7 +78,7 @@ size_t sizeValidation()
         throw out_of_range("Error,enter correct size");
     }
 
-    return size;
+    return static_cast<size_t> (size);
 }
 
 void fillArr(int* arr, const size_t size, const int minimumNum, const int maximumNum)
